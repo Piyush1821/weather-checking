@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> WEATHER - Piyush Tripathi</title>
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background-main: linear-gradient(135deg, #b2f0ff 0%, #6ec6ff 100%);
+      --glass-bg: rgba(255,255,255,0.65);
+      --glass-border: rgba(110,198,255,0.19);
+      --accent-blue: #2196f3;
+      --accent-blue-dark: #1565c0;
+      --text-main: #16334a;
+      --text-faint: #4a90e2;
+      --input-bg: #e3f6fd;
+      --input-border: #2196f3;
+      --button-bg: linear-gradient(90deg, #2196f3 0%, #6ec6ff 100%);
+      --button-hover: linear-gradient(90deg, #6ec6ff 0%, #2196f3 100%);
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: var(--background-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .weather-glass {
+      background: var(--glass-bg);
+      box-shadow: 0 8px 32px 0 rgba(33,150,243,0.18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      border: 1.5px solid var(--glass-border);
+      padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+      text-align: center;
+      min-width: 340px;
+      max-width: 95vw;
+    }
+    .clock-glass {
+      margin-bottom: 1.1rem;
+      background: rgba(110,198,255,0.13);
+      border-radius: 1.2rem;
+      padding: 0.7rem 1.2rem 0.5rem 1.2rem;
+      display: inline-block;
+      box-shadow: 0 2px 12px #2196f322;
+    }
+    #digitalClock {
+      font-family: 'Orbitron', monospace, sans-serif;
+      font-size: 2.3rem;
+      color: var(--accent-blue-dark);
+      letter-spacing: 0.14em;
+      font-weight: bold;
+      text-shadow: 0 2px 12px #2196f355;
+    }
+    .clock-day {
+      margin-top: 0.2rem;
+      font-size: 1.08rem;
+      color: var(--text-faint);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .app-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.1rem;
+      color: var(--accent-blue);
+      margin: 0.7rem 0 1.2rem 0;
+      letter-spacing: 0.08em;
+      text-shadow: 0 2px 12px #2196f344;
+    }
+    #weatherForm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+    #cityInput {
+      padding: 0.7rem 1.2rem;
+      border-radius: 1.2rem;
+      border: 1.5px solid var(--input-border);
+      font-size: 1.05rem;
+      width: 180px;
+      outline: none;
+      background: var(--input-bg);
+      color: var(--accent-blue-dark);
+      transition: border 0.2s;
+    }
+    #cityInput:focus {
+      border: 1.5px solid var(--accent-blue-dark);
+    }
+    button[type="submit"] {
+      padding: 0.7rem 1.1rem;
+      background: var(--button-bg);
+      color: #fff;
+      border: none;
+      border-radius: 1.2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.18s;
+      box-shadow: 0 2px 8px #2196f344;
+    }
+    button[type="submit"]:hover {
+      background: var(--button-hover);
+      color: #1565c0;
+    }
+    #weatherResult {
+      margin-top: 1.2rem;
+      font-size: 1.13rem;
+      color: var(--accent-blue-dark);
+      min-height: 2.5rem;
+    }
+    #weatherResult img {
+      vertical-align: middle;
+    }
+    .owner-badge {
+      margin-top: 2rem;
+      color: var(--accent-blue);
+      font-size: 1.08rem;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 8px #2196f388;
+      background: rgba(33,150,243,0.09);
+      border-radius: 1rem;
+      display: inline-block;
+      padding: 0.3rem 1.1rem;
+    }
+    @media (max-width: 480px) {
+      .weather-glass {
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+        min-width: 0;
+      }
+      #digitalClock {
+        font-size: 1.3rem;
+      }
+      .app-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="weather-glass">
+    <div class="clock-glass">
+      <div id="digitalClock">
+        <span id="clockHour">00</span> :
+        <span id="clockMinute">00</span> :
+        <span id="clockSecond">00</span>
+        <span id="clockPeriod">AM</span>
+      </div>
+      <div id="clockDay" class="clock-day">Day</div>
+    </div>
+    <h1 class="app-title">Weather App</h1>
+    <form id="weatherForm">
+      <input 
+        type="text" 
+        id="cityInput" 
+        placeholder="Enter city name" 
+        autocomplete="off"
+        required
+      >
+      <button type="submit">Get Weather</button>
+    </form>
+    <div id="weatherResult">
+      <span style="font-size:2rem;">☁️</span> Enter a city and get the weather!
+    </div>
+    <div class="owner-badge">Made by <strong>Piyush Tripathi</strong></div>
+  </div>
+  <script>
+    function updateDigitalClock() {
+      const now = new Date();
+      let hour = now.getHours();
+      const minute = now.getMinutes();
+      const second = now.getSeconds();
+      const period = hour >= 12 ? "PM" : "AM";
+      hour = hour % 12;
+      hour = hour ? hour : 12;
+      const pad = n => n.toString().padStart(2, "0");
+      document.getElementById("clockHour").textContent = pad(hour);
+      document.getElementById("clockMinute").textContent = pad(minute);
+      document.getElementById("clockSecond").textContent = pad(second);
+      document.getElementById("clockPeriod").textContent = period;
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      document.getElementById("clockDay").textContent = days[now.getDay()];
+    }
+    setInterval(updateDigitalClock, 1000);
+    updateDigitalClock();
+
+    const API_KEY = "9c8ddcf3bdcc855cd833a82234e58531";
+    document.getElementById('weatherForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const city = document.getElementById('cityInput').value.trim();
+      const resultDiv = document.getElementById('weatherResult');
+      resultDiv.innerHTML = '<span style="font-size:2rem;">☁️</span> Loading...';
+      if (!city) {
+        resultDiv.innerHTML = '<span style="font-size:2rem;">☁️</span> Please enter a city name.';
+        return;
+      }
+      try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (response.ok) {
+          resultDiv.innerHTML = `
+            <h2>${data.name}, ${data.sys.country}</h2>
+            <p>
+              <img src="<https://openweathermap.org/img/wn/${data.weather>[0].icon}@2x.png" alt="${data.weather[0].description}" style="vertical-align:middle;">
+              <strong>${data.main.temp}&deg;C</strong> - ${data.weather[0].description}
+            </p>
+            <p>Humidity: ${data.main.humidity}% | Wind: ${data.wind.speed} m/s</p>
+          `;
+        } else {
+          resultDiv.innerHTML = `<span style="font-size:2rem;">☁️</span> ${data.message ? data.message : "API error."} (Code: ${data.cod})`;
+        }
+      } catch (err) {
+        resultDiv.innerHTML = '<span style="font-size:2rem;">☁️</span> Error fetching weather data. Please check your internet connection or try again.';
+      }
+    });
+  </script>
+</body>
+</html>
